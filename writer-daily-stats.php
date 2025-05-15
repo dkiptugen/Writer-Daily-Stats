@@ -30,3 +30,30 @@
 					update_post_meta($post->ID, 'views', $views + 1);
 				}
 		});
+	// Add the column to the admin posts list
+	add_filter('manage_posts_columns', function($columns) {
+		$columns['views'] = 'Views';
+		return $columns;
+	});
+
+// Populate the "Views" column
+	add_action('manage_posts_custom_column', function($column, $post_id) {
+		if ($column === 'views') {
+			echo (int) get_post_meta($post_id, 'post_views', true);
+		}
+	}, 10, 2);
+// Make the column sortable
+	add_filter('manage_edit-post_sortable_columns', function($columns) {
+		$columns['views'] = 'post_views';
+		return $columns;
+	});
+
+// Handle custom sorting
+	add_action('pre_get_posts', function($query) {
+		if (!is_admin() || !$query->is_main_query()) return;
+		
+		if ($query->get('orderby') === 'post_views') {
+			$query->set('meta_key', 'post_views');
+			$query->set('orderby', 'meta_value_num');
+		}
+	});
