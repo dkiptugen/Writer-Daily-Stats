@@ -2,7 +2,7 @@
 	/**
 	 * Plugin Name: Writer Daily Stats
 	 * Description: Shows number of posts and views per writer per day.
-	 * Version: 1.2
+	 * Version: 1.4
 	 * Author: Dennis Kiptoo Kiptugen
 	 */
 	plugin_dir_path(__FILE__) . 'plugin-update-checker/load-v5p5.php';
