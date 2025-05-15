@@ -2,12 +2,13 @@
 	/**
 	 * Plugin Name: Writer Daily Stats
 	 * Description: Shows number of posts and views per writer per day.
-	 * Version: 1.1
+	 * Version: 1.2
 	 * Author: Dennis Kiptoo Kiptugen
 	 */
-	require_once plugin_dir_path(__FILE__) . 'plugin-update-checker/plugin-update-checker.php';
+	plugin_dir_path(__FILE__) . 'plugin-update-checker/load-v5p5.php';
 	
-	$updateChecker = Puc_v4_Factory::buildUpdateChecker(
+	use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+	$updateChecker = PucFactory::buildUpdateChecker(
 		'https://github.com/dkiptugen/Writer-Daily-Stats/',
 		__FILE__,
 		'writer-daily-stats'
